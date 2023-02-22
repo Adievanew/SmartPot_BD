@@ -1,0 +1,31 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="SmartPot_BD.MainPage"
+             Background="#FF005C"
+             Title="Данные">
+
+    <StackLayout Spacing="50">
+        <StackLayout></StackLayout>
+        <StackLayout Orientation="Horizontal" HorizontalOptions="CenterAndExpand" BackgroundColor="#FF005C">
+            <Image Source="@drawable/light.png" WidthRequest="30"></Image>
+            <Label x:Name="LabelLight" Text="Освещенность:" FontSize="Large" HorizontalOptions="Center"  />
+        </StackLayout>
+        <StackLayout Orientation="Horizontal" HorizontalOptions="CenterAndExpand" BackgroundColor="#FF005C">
+            <Image Source="@drawable/water.png" WidthRequest="20"></Image>
+            <Label x:Name="LabelHumidity" Text="Влажность почвы:" FontSize="Large" HorizontalOptions="Center"  />
+        </StackLayout>
+        <StackLayout Orientation="Horizontal" HorizontalOptions="CenterAndExpand" BackgroundColor="#FF005C">
+            <Image Source="@drawable/water.png" WidthRequest="20"></Image>
+            <Label x:Name="LabelWater" Text="Уровень воды:" FontSize="Large" HorizontalOptions="Center"  />
+        </StackLayout>
+        <Button x:Name="btnReciver" Text="Получить данные" Clicked="btnReciver_Clicked"></Button>
+        <Button x:Name="btnBd" Text="База данных" Clicked="btnBd_Clicked"></Button>
+        <RelativeLayout>
+            <Frame BackgroundColor="#BE0145" CornerRadius="0" RelativeLayout.WidthConstraint="{ConstraintExpression Type=RelativeToParent, Property=Width}" RelativeLayout.YConstraint="{ConstraintExpression Type=RelativeToParent, Property=Height, Factor=0.25}">
+                <Label Text="Android App by Chernovskiy ver 1 alpha" HorizontalTextAlignment="Start" FontSize="14"/>
+            </Frame>
+        </RelativeLayout>
+    </StackLayout>
+
+</ContentPage>
