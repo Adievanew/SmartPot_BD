@@ -1,0 +1,63 @@
+#include <LiquidCrystal.h>
+#define relay 5
+#define sensorPower 6 
+#define sensorWaterPower 7
+#define sensorWaterPin A2
+LiquidCrystal lcd(13, 12, 11, 10,  9,  8);
+ 
+void setup() 
+{
+  pinMode(3, OUTPUT);
+  pinMode(relay, OUTPUT);
+  pinMode(A0, INPUT_PULLUP);
+  pinMode(sensorPower, OUTPUT);
+  digitalWrite(sensorPower, LOW);
+  lcd.begin(16, 2);
+  lcd.print("Water Level:");
+  lcd.setCursor(0, 1);
+  lcd.print("Soil:");
+  Serial.begin(9600);
+}
+ 
+void loop() 
+{
+  int val = analogRead(A0);
+  int leds = map(val, 0, 1000, 100, 1);
+  lcd.setCursor(12, 0);
+  Serial.println(readWaterSensor());
+  if(readWaterSensor() < 40){
+    lcd.print("Low");
+  } else {
+    lcd.print("Good");
+  }
+  lcd.print(" ");
+  lcd.setCursor(6, 1);
+  if(readSensor()>700){
+    lcd.print("Dry");
+  }
+  else{
+    lcd.print("Wet");
+  }
+  if(leds < 55){
+    digitalWrite(relay, HIGH);
+  } else {
+    digitalWrite(relay, LOW);
+  }
+  delay(5000);
+}
+int readSensor() 
+{
+  digitalWrite(sensorPower, HIGH);  
+  delay(10);                        
+  int val = analogRead(A1);  
+  digitalWrite(sensorPower, LOW);   
+  return val;                       
+}
+int readWaterSensor() 
+{
+  digitalWrite(sensorWaterPower, HIGH);  // Включить датчик
+  delay(10);                        // Ждать 10 миллисекунд
+  int val = analogRead(sensorWaterPin);  // Прочитать аналоговое значение от датчика
+  digitalWrite(sensorPower, LOW);   // Выключить датчик
+  return val;                       // Вернуть текущее показание
+}

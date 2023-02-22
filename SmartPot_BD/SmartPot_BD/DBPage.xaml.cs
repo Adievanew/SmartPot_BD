@@ -8,6 +8,7 @@ using Xamarin.Forms;
 using Xamarin.Forms.Xaml;
 
 namespace SmartPot_BD
+    //vvvv
 {
     [XamlCompilation(XamlCompilationOptions.Compile)]
     public partial class DBPage : ContentPage
